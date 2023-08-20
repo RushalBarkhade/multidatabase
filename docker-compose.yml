@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  master_db:
+    image: postgres
+    restart: always
+    container_name: master_db
+    environment:
+      - POSTGRES_DB=master
+      - POSTGRES_USER=masteruser
+      - POSTGRES_PASSWORD=masteruser
+    ports:
+      - 5435:5432
+    volumes:
+      - master_volumn:/var/lib/postgresql/data
+  read_db:
+    image: postgres
+    restart: always
+    container_name: read_db
+    environment:
+      - POSTGRES_DB=read
+      - POSTGRES_USER=readuser
+      - POSTGRES_PASSWORD=readuser
+    ports:
+      - 5436:5432
+    volumes:
+      - read_volumn:/var/lib/postgresql/data
+ 
+volumes:
+  master_volumn: null
+  read_volumn: null
